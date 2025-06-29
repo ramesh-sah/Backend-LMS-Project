@@ -7,14 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\Filters\FilterHelper;
 use App\Http\Controllers\Helpers\Pagination\PaginationHelper;
 use App\Http\Controllers\Helpers\Sort\SortHelper;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use PharIo\Manifest\Author as ManifestAuthor;
 
 class AuthorController extends Controller
 {
-    public function getAllAuthor(Request $request)
+    public function getAllAuthor(Request $request): JsonResponse
     {
-        $sortBy = $request->input('sort_by'); // sort_by params 
+        $sortBy = $request->input('sort_by'); // sort_by params
         $sortOrder = $request->input('sort_order'); // sort_order params
         $filters = $request->input('filters'); // filter params
         $perPage = $request->input('per_page', 5); // Default to 10 items per page
@@ -51,7 +51,7 @@ class AuthorController extends Controller
         ], 200);
     }
 
-    public function postAuthor(Request $request)
+    public function postAuthor(Request $request): JsonResponse
     {
         // Post request
         $request->validate([
